@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>元素垂直居中</title>
+		<style>
+			h2 {
+				font-size: 1.25rem;
+				font-weight: 500;
+				text-align: center;
+			}
+
+			p {
+				text-align: center;
+				font-size: 1.5rem;
+				font-weight: 500;
+				font-family: "microsoft yahei";
+			}
+
+			.container {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.item>div {
+				margin: .5rem;
+				border: 1px solid burlywood;
+				height: 200px;
+				width: 300px;
+			}
+
+			.box {
+				background-color: aquamarine;
+			}
+
+			.box.size {
+				width: 100px;
+				height: 100px;
+			}
+
+			.vertical-center-1 {
+				position: relative;
+				height: inherit;
+			}
+
+			.vertical-center-box-1 {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -50px 0 0 -50px;
+			}
+
+			.vertical-center-2 {
+				position: relative;
+				height: inherit;
+			}
+
+			.vertical-center-box-2 {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			.vertical-center-3 {
+				position: relative;
+				height: inherit;
+			}
+
+			.vertical-center-box-3 {
+				position: absolute;
+				top: calc(50% - 50px);
+				left: calc(50% - 50px);
+			}
+
+			.vertical-center-4 {
+				position: relative;
+				height: inherit;
+			}
+
+			.vertical-center-box-4 {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.vertical-center-5 {
+				line-height: 200px;
+				text-align: center;
+				/* 
+					必须设置该项，否则默认存在于行框盒子前的“strut"(幽灵空白节点)
+					会让居中往下靠，并非绝对的垂直居中 
+				*/
+				font-size: 0;
+			}
+
+			.vertical-center-box-5 {
+				display: inline-block;
+				vertical-align: middle;
+				/* 修正文字 */
+				line-height: 1;
+				text-align: left;
+				font-size: 1rem;
+			}
+
+			.vertical-center-6 {
+				height: inherit;
+				width: inherit;
+				writing-mode: vertical-lr;
+				text-align: center;
+
+			}
+
+			.vertical-center-6-inner {
+				writing-mode: horizontal-tb;
+				text-align: center;
+				display: inline-block;
+				width: 100%;
+			}
+
+			.vertical-center-box-6 {
+				display: inline-block;
+				margin: auto;
+				text-align: left;
+			}
+
+			.vertical-center-7 {
+				height: inherit;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			.vertical-center-8 {
+				height: inherit;
+				width: inherit;
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			}
+			
+			.vertical-center-box-8 {
+				display: inline-block;
+				/* 还原文字 */
+				text-align: left;
+			}
+			
+			.vertical-center-9 {
+				height: inherit;
+				display: grid;
+			}
+			
+			.vertical-center-box-9 {
+				align-self: center;
+				justify-self: center;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="../index.html">返回</a>
+		<p>以下所言宽高，皆为被居中元素宽高</p>
+		<div class="container">
+			<div class="item">
+				<h2>absolute + 负margin</h2>
+				<code>【需已知宽高】margin设置为元素自身宽高的一半 </code>
+				<div>
+					<div class="vertical-center-1">
+						<div class="vertical-center-box-1 box size">1</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<h2>absolute + margin auto</h2>
+				<code>【需已知宽高】利用流的特性 </code>
+				<div>
+					<div class="vertical-center-2">
+						<div class="vertical-center-box-2 box size">1</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<h2>absolute + calc</h2>
+				<code>【需已知宽高】利用计算属性设置位置 </code>
+				<div>
+					<div class="vertical-center-3">
+						<div class="vertical-center-box-3 box size">1</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<h2>absolute + transform</h2>
+				<code>【无需宽高】利用transform </code>
+				<div>
+					<div class="vertical-center-4">
+						<div class="vertical-center-box-4 box size">1</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<h2>vertical</h2>
+				<code>【无需宽高】利用vertical </code>
+				<div>
+					<div class="vertical-center-5">
+						<div class="vertical-center-box-5 box size">1</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<h2>writing-mode</h2>
+				<code>【无需宽高】花里胡哨的居中方法 </code>
+				<div>
+					<div class="vertical-center-6">
+						<div class="vertical-center-6-inner">
+							<div class="vertical-center-box-6 box size">1</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<h2>flex</h2>
+				<code>【无需宽高】独孤求败的居中方法 </code>
+				<div>
+					<div class="vertical-center-7">
+						<div class="box size">1</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<h2>css-table</h2>
+				<code>【无需宽高】将普通元素变成table元素 </code>
+				<div>
+					<div class="vertical-center-8">
+						<div class="vertical-center-box-8 box size">1</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<h2>grid</h2>
+				<code>【无需宽高】降维打击 </code>
+				<div>
+					<div class="vertical-center-9">
+						<div class="vertical-center-box-9 box size">1</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<img src="../Source/垂直居中兼容性.png" />
+	</body>
+</html>
